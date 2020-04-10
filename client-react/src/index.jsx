@@ -9,6 +9,7 @@ import NykeMain from './components/NykeMain/NykeMain.jsx';
 import Fade from './components/Portal&animation/Fade.jsx';
 
 import shoeExample from './mockData.js';
+import { url } from 'inspector';
 
 /*
 Have to detect changes in the address bar
@@ -39,7 +40,6 @@ class App extends React.Component {
     this.getShoeSet = this.getShoeSet.bind(this);
     this.purchaseShoe = this.purchaseShoe.bind(this);
     this.closePurchaseShoe = this.closePurchaseShoe.bind(this);
-
     this.setColorWayShoe = this.setColorWayShoe.bind(this);
   }
   // const [state, setState] = useState({view: 'Feed'})
@@ -48,41 +48,28 @@ class App extends React.Component {
   //testurl
   //  /api/shoes/Nike React HyperSet Rise 4
   //  /api/shoes/Nike Odyssey React JoyRide CC 2
-  componentDidMount() {
-    this.getShoeSet();
 
-    function searchForProductWhenHashChanges() {
-      const pathArray = window.location.pathname.split('/');
-      console.log(window.location.href);
-      console.log(pathArray, 'THIS IS THE PATH ARRAY');
-      //this.getShoeSet(pathArray[pathArray.length - 1])
-    }
-
-    window.addEventListener('hashchange', () => {
-      console.log('THE HASH IS CHANGING', window.location.hash);
-      let answer = window.location.hash.split('#');
-      this.getShoeSet(answer[1]);
-    });
-  }
 
   getShoeSet(id) {
+    console.log("HELLO")
     if (id === undefined) {
-      id = 160;
+      id = Math.floor(Math.random() * (100-1));
     }
 
     Axios.get(`/api/shoe/${id}`)
-      .then((response) => {
-        console.log('recieved', response.data.name);
+    .then((response) => {
+        console.log(response)
         let shoe = response.data;
         return shoe;
       })
 
       .then((shoe) => {
-        Axios.get(`/api/shoes/${shoe.name}`).then((shoeset) => {
-          console.log('recieved an object', shoeset.data);
+        Axios.get(`/api/shoes/${shoe.nikeID}`).then((shoeset) => {
+          var array = []
+          array.push(shoe)
           this.setState({
             currentShoe: shoe,
-            shoeSet: shoeset.data
+            shoeSet: array
           });
         });
       })
@@ -91,9 +78,9 @@ class App extends React.Component {
         window.alert(
           'Fetch Request For Nike Main Component Failed, SoMeThInGwEnTtErRiBlYwRoNg'
         );
-        this.setState({
-          currentShoe: shoeExample
-        });
+        // this.setState({
+        //   currentShoe: shoe
+        // });
       });
   }
 
@@ -138,6 +125,23 @@ class App extends React.Component {
       validOrder: true
     });
     //console.log(this.state.currentOrder);
+  }
+
+ componentDidMount() {
+    this.getShoeSet()
+
+    function searchForProductWhenHashChanges() {
+      const pathArray = window.location.pathname.split('/');
+      console.log(window.location.href);
+      console.log(pathArray, 'THIS IS THE PATH ARRAY');
+      //this.getShoeSet(pathArray[pathArray.length - 1])
+    }
+
+    window.addEventListener('hashchange', () => {
+      console.log('THE HASH IS CHANGING', window.location.hash);
+      let answer = window.location.hash.split('#');
+      this.getShoeSet(answer[1]);
+    });
   }
 
   render() {

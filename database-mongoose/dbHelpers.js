@@ -2,10 +2,10 @@
 const db = require('./index')
 
 module.exports = {
+  postOne: (obj)=> db.insertMany(),
   getAll: ()=> db.find({}),
   getAllShoeSet: (name)=> db.find({name: `${name}`}),
   getOne: (nikeID) => db.findOne({nikeID: nikeID}),
-  postOne: (obj)=> db.insertMany(),
-  deleteOne: (_id) => db.destroy(_id),
-  updateShoe: (newObj, id) => {}
+  updateShoe: (newObj, id) => {},
+  deleteOne: (_id) => db.destroy(_id)
 }

@@ -1,4 +1,4 @@
-const db = require("../../database-mongoose/dbHelpers");
+const db = require("../models/");
 
 module.exports = {
 
@@ -10,7 +10,7 @@ module.exports = {
 		db.getOne(nikeID)
 			.then(shoe => {
 				console.log("Get One SHOE".green, " Success".cyan);
-				res.status(200).send(shoe);
+				res.status(200).send(shoe.rows);
 			})
 			.catch(e => {
 				console.log("Get One SHOE".red, " UnSuccessFull".red);

@@ -8,9 +8,13 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon ./server/index.js",
+    "start": "nodemon  ./server/index.js",
     "dev:react": "webpack -d --watch",
-    "db:seed": "node database-mongoose/seed.js"
+    "db:seed": "node --max-old-space-size=4096 database-mongoose/seed.js",
+    "db:import": "mongoimport -d nykeproducts -c products --type json --file database-mongoose/data.json --jsonArray",
+    "psql:import": "cat database-mongoose/data.csv | psql -h localhost -p 5432 nykeproducts -c \"COPY products (nikeID,names,gender,types,discountprice,prices,colorstyles,productpictures,weights,lasts,offsetmeasurement,styles,collections,sizes) FROM STDIN(FORMAT CSV, HEADER TRUE, DELIMITER ';');\"",
+    "psql:connect": "node database-psql/index.js",
+    "generate": "node database-mongoose/generateData.js"
   },
   "dependencies": {
     "axios": "0.19.2",
@@ -19,14 +23,18 @@
     "cors": "2.8.5",
     "express": "4.17.1",
     "file-loader": "^6.0.0",
-    "mongoose": "5.9.4",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.7.1",
     "morgan": "1.9.1",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.2",
     "path": "0.12.7",
+    "pg": "^8.0.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "unsplash-js": "^6.0.0",
-    "url-loader": "^4.0.0"
+    "url-loader": "^4.0.0",
+    "Faker": "0.7.2"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

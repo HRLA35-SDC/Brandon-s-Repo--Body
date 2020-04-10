@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const productSchema = require('./schema')
+const mongo = require('mongo')
 
 mongoose.Promise = global.Promise;
 //need to seed DB
-mongoose.connect('mongodb://localhost/nykeproducts', {
+mongoose.connect('mongodb://localhost/nykeproducts?keepAlive=true&poolSize=30&autoReconnect=true&socketTimeoutMS=360000&connectTimeoutMS=360000', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
@@ -16,4 +17,6 @@ db.once('open', () => {
 
 var Product = mongoose.model('Product', productSchema);
 
-module.exports = Product
+
+
+module.exports = Product;
