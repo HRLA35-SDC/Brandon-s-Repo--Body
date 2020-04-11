@@ -4,7 +4,6 @@ import MainPictureModal from '../modals/MainPictureModal.jsx'
 
 
 const NykeMain = ({currentShoe}) => {
-  console.log(currentShoe, "CURRENT SHOE")
   //toggle modal for pictures
   const [modal, setModal] = useState(false)
   //pass function down to toggle modal

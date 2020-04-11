@@ -4,7 +4,6 @@ module.exports = {
 
 	//fetch a single shoe by ID given
 	getOneShoe: (req, res) => {
-		console.log('HELLO')
 		let { nikeID } = req.params;
 		console.log(`QUERYING DB FOR SINGLE SHOE WITH ID OF`.green, `${nikeID}`.cyan);
 		db.getOne(nikeID)

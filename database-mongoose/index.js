@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const productSchema = require('./schema')
-const mongo = require('mongo')
+const productSchema = require('./schema');
+const mongo = require('mongo');
 
 mongoose.Promise = global.Promise;
 //need to seed DB

@@ -5,6 +5,7 @@ const router = require("./router");
 const app = express();
 const PORT = 3002;
 const db = require("../database-mongoose/index");
+const morgan = require('morgan')
 
 var colors = require("colors");
 colors.setTheme({
@@ -22,6 +23,7 @@ colors.setTheme({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 // UNCOMMENT FOR REACT
 app.use(express.static(path.join(__dirname + "/../client-react/dist")));

@@ -1000,7 +1000,7 @@ const writeJSONB = async () => {
   for (var i = 0; i < 10000000; i++) {
     let data = generateRandomDataSet(1)
     data[0].nikeID = i;
-    // adds second quote that converts to an escape character, but couldn't figure out the error for the script command when declaring the escape character.
+    // adds second quote that converts to an escape character, but couldn't figure out the error for the script command when declaring the escape
     for (var key in data[0].availSizes) {
      data[0].availSizes['"' + key + '"'] = data[0].availSizes[key];
      delete data[0].availSizes[key];
@@ -1009,6 +1009,7 @@ const writeJSONB = async () => {
       if (err) console.error('FUCKED UP', err)
     })
   }
+}
 }
 writeJSONB()
 module.exports = { writeData, writeJSONB };

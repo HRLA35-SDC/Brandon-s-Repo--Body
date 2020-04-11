@@ -14,6 +14,7 @@
     "db:import": "mongoimport -d nykeproducts -c products --type json --file database-mongoose/data.json --jsonArray",
     "psql:import": "cat database-mongoose/data.csv | psql -h localhost -p 5432 nykeproducts -c \"COPY products (nikeID,names,gender,types,discountprice,prices,colorstyles,productpictures,weights,lasts,offsetmeasurement,styles,collections,sizes) FROM STDIN(FORMAT CSV, HEADER TRUE, DELIMITER ';');\"",
     "psql:connect": "node database-psql/index.js",
+    "mongo:connect": "node database-mongoose/index.js",
     "generate": "node database-mongoose/generateData.js"
   },
   "dependencies": {

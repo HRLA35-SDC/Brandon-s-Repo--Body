@@ -9,7 +9,6 @@ import NykeMain from './components/NykeMain/NykeMain.jsx';
 import Fade from './components/Portal&animation/Fade.jsx';
 
 import shoeExample from './mockData.js';
-import { url } from 'inspector';
 
 /*
 Have to detect changes in the address bar
@@ -51,26 +50,39 @@ class App extends React.Component {
 
 
   getShoeSet(id) {
-    console.log("HELLO")
+    var data = shoeExample;
     if (id === undefined) {
       id = Math.floor(Math.random() * (100-1));
     }
 
-    Axios.get(`/api/shoe/${id}`)
+    Axios.get(`/api/shoepsql/${id}`)
     .then((response) => {
-        console.log(response)
-        let shoe = response.data;
+        data.nikeID = response.data[0].nikeID;
+        data.name = response.data[0].names;
+        data.gender = response.data[0].gender;
+        data.type = response.data[0].types;
+        data.discountPrice = response.data[0].discountprice;
+        data.price = response.data[0].prices;
+        data.colorStyles = response.data[0].colorstyles;
+        data.productPictures = response.data[0].productpictures;
+        data.productDetails.weight = response.data[0].weights;
+        data.productDetails.last = response.data[0].lasts;
+        data.productDetails.offset = response.data[0].offsetmeasurement;
+        data.productDetails.style = response.data[0].styles;
+        data.collection = response.data[0].collections;
+        data.availSizes = response.data[0].sizes;
+        let shoe = data;
         return shoe;
       })
 
       .then((shoe) => {
-        Axios.get(`/api/shoes/${shoe.nikeID}`).then((shoeset) => {
+        // Axios.get(`/api/shoespsql/${shoe.nikeID}`).then((shoeset) => {
           var array = []
           array.push(shoe)
           this.setState({
             currentShoe: shoe,
             shoeSet: array
-          });
+          // });
         });
       })
 
