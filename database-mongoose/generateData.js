@@ -993,7 +993,7 @@ const writeData = async () => {
 }
 var sizes = '{""5"": true,""6"": true,""7"": true,""8"": false,""9"": true,""10"": true,""11"": true,""12"": true,""13"": true,""14"": false,""15"": true,""16"": true,""17"": true,""18"": false,""5x5"": false,""6x5"": true,""7x5"": true,""8x5"": true,""9x5"": true,""10x5"": false,""11x5"": true,""12x5"": true,""13x5"": false}'
 
-const writeJSONB = async () => {
+const writeCSV = async () => {
   await fs.appendFileSync(`${__dirname}/data.csv`, `${"nikeID;names;gender;types;discountprice;prices;colorstyles;productpictures;weights;lasts;offsetmeasurement;styles;collections;sizes"}\n`, (err) => {
     if (err) console.error('FUCKED UP', err)
   })
@@ -1011,7 +1011,7 @@ const writeJSONB = async () => {
   }
 }
 }
-writeJSONB()
+writeCSV()
 module.exports = { writeData, writeJSONB };
 
 //write stream

@@ -52,7 +52,7 @@ class App extends React.Component {
   getShoeSet(id) {
     var data = shoeExample;
     if (id === undefined) {
-      id = Math.floor(Math.random() * (100-1));
+      id = Math.floor(Math.random() * (10000000-1));
     }
 
     Axios.get(`/api/shoepsql/${id}`)

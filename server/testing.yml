@@ -1,0 +1,19 @@
+config:
+  target: 'http://localhost:3002/api'
+  phases:
+    - duration: 1
+      arrivalRate: 1000
+  variables:
+    - param: ""
+  processor: "./testnumber.js"
+scenarios:
+  - flow:
+    - function: "generateRandomData"
+    - get:
+        url: "/shoepsql/{{$randomNumber(1,10000)}}"
+    # - log: "Sent {{$randomNumber(1,10000)}}"
+        
+         
+
+
+        

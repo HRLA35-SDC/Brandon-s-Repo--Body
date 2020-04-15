@@ -21,6 +21,10 @@ router.route("/shoepsql/:nikeID").get(psqlController.getOneShoe)
 //get shoeset by name
 router.route("/shoespsql/:nikeID").get(psqlController.getShoes);
 
+//test 
+router.route("/test", ()=> {
+	console.log("recieved")
+})
 
 module.exports = router;
 // {"name":"Nike Free RN 3.0 NRG",

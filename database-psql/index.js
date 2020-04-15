@@ -1,6 +1,6 @@
 // const mysql = require('mysql')
 const pg = require('pg');
-const connectionString = "postgres://postgres:admin@localhost/nykeproducts"
+const connectionString = "postgres://postgres:admin@localhost:3002/nykeproducts"
 var pgClient = new pg.Client(connectionString);
 pgClient.connect()
 .then(()=> {

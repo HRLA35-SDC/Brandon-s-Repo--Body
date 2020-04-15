@@ -1,3 +1,4 @@
+require('newrelic');
 const db = require("../../database-mongoose/dbHelpers");
 
 module.exports = {
@@ -9,6 +10,8 @@ module.exports = {
 		db.getOne(nikeID)
 			.then(shoe => {
 				console.log("Get One SHOE".green, " Success".cyan);
+				const used = process.memoryUsage().heapUsed / 1024 / 1024;
+        console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
 				res.status(200).send(shoe);
 			})
 			.catch(e => {
@@ -24,6 +27,7 @@ module.exports = {
 		db.getOne(nikeID)
 			.then(allData => {
 				console.log("QUERY SHOESET".green, " Success".cyan);
+				
 				res.status(200).send(allData);
 			})
 			.catch(e => {

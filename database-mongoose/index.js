@@ -9,6 +9,7 @@ mongoose.connect('mongodb://localhost/nykeproducts?keepAlive=true&poolSize=30&au
   useUnifiedTopology: true,
 });
 
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
