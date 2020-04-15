@@ -1,5 +1,5 @@
 //import db
-const db = require('./index')
+// const db = require('./index')
 
 module.exports = {
   postOne: (obj)=> db.insertMany(),
