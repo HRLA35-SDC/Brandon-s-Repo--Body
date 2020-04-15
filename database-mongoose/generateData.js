@@ -1012,7 +1012,7 @@ const writeCSV = async () => {
 }
 }
 writeCSV()
-module.exports = { writeData, writeJSONB };
+module.exports = { writeData, writeCSV };
 
 //write stream
 //.drain 
