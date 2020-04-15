@@ -1005,7 +1005,7 @@ const writeCSV = async () => {
      data[0].availSizes['"' + key + '"'] = data[0].availSizes[key];
      delete data[0].availSizes[key];
     
-    await fs.appendFileSync(`${__dirname}/data.csv`, `${data[0].nikeID}; '${data[0].name}'; '${data[0].gender}'; '${data[0].type}'; ${data[0].discountPrice}; ${data[0].price}; "{${data[0].colorStyles}}"; "{${data[0].productPictures}}"; ${data[0].productDetails.weight}; '${data[0].productDetails.last}'; '${data[0].productDetails.offset}'; "{${data[0].productDetails.style}}"; "{${data[0].collection}}"; "${sizes}"${'\n'}`, (err) => {
+    await fs.writeFileSync(`${__dirname}/data.csv`, `${data[0].nikeID}; '${data[0].name}'; '${data[0].gender}'; '${data[0].type}'; ${data[0].discountPrice}; ${data[0].price}; "{${data[0].colorStyles}}"; "{${data[0].productPictures}}"; ${data[0].productDetails.weight}; '${data[0].productDetails.last}'; '${data[0].productDetails.offset}'; "{${data[0].productDetails.style}}"; "{${data[0].collection}}"; "${sizes}"${'\n'}`, (err) => {
       if (err) console.error('FUCKED UP', err)
     })
   }
