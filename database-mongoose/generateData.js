@@ -997,7 +997,7 @@ const writeCSV = async () => {
   await fs.writeFileSync(`${__dirname}/data.csv`, `${"nikeID;names;gender;types;discountprice;prices;colorstyles;productpictures;weights;lasts;offsetmeasurement;styles;collections;sizes"}\n`, (err) => {
     if (err) console.error('FUCKED UP', err)
   })
-  for (var i = 0; i < 1,000,000; i++) {
+  for (var i = 0; i < 1000000; i++) {
     let data = generateRandomDataSet(1)
     data[0].nikeID = i;
     // adds second quote that converts to an escape character, but couldn't figure out the error for the script command when declaring the escape
