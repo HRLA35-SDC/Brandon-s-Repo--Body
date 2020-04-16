@@ -994,21 +994,22 @@ const writeData = async () => {
 var sizes = '{""5"": true,""6"": true,""7"": true,""8"": false,""9"": true,""10"": true,""11"": true,""12"": true,""13"": true,""14"": false,""15"": true,""16"": true,""17"": true,""18"": false,""5x5"": false,""6x5"": true,""7x5"": true,""8x5"": true,""9x5"": true,""10x5"": false,""11x5"": true,""12x5"": true,""13x5"": false}'
 
 const writeCSV = async () => {
-  await fs.appendFileSync(`${__dirname}/data.csv`, `${"nikeID;names;gender;types;discountprice;prices;colorstyles;productpictures;weights;lasts;offsetmeasurement;styles;collections;sizes"}\n`, (err) => {
+  await fs.writeFileSync(`${__dirname}/data.csv`, `${"nikeID;names;gender;types;discountprice;prices;colorstyles;productpictures;weights;lasts;offsetmeasurement;styles;collections;sizes"}\n`, (err) => {
     if (err) console.error('FUCKED UP', err)
   })
   for (var i = 0; i < 10000000; i++) {
     let data = generateRandomDataSet(1)
     data[0].nikeID = i;
+    console.log(data)
     // adds second quote that converts to an escape character, but couldn't figure out the error for the script command when declaring the escape
     for (var key in data[0].availSizes) {
      data[0].availSizes['"' + key + '"'] = data[0].availSizes[key];
      delete data[0].availSizes[key];
     
-    await fs.writeFileSync(`${__dirname}/data.csv`, `${data[0].nikeID}; '${data[0].name}'; '${data[0].gender}'; '${data[0].type}'; ${data[0].discountPrice}; ${data[0].price}; "{${data[0].colorStyles}}"; "{${data[0].productPictures}}"; ${data[0].productDetails.weight}; '${data[0].productDetails.last}'; '${data[0].productDetails.offset}'; "{${data[0].productDetails.style}}"; "{${data[0].collection}}"; "${sizes}"${'\n'}`, (err) => {
-      if (err) console.error('FUCKED UP', err)
-    })
-  }
+    }
+      await fs.appendFileSync(`${__dirname}/data.csv`, `${data[0].nikeID}; '${data[0].name}'; '${data[0].gender}'; '${data[0].type}'; ${data[0].discountPrice}; ${data[0].price}; "{${data[0].colorStyles}}"; "{${data[0].productPictures}}"; ${data[0].productDetails.weight}; '${data[0].productDetails.last}'; '${data[0].productDetails.offset}'; "{${data[0].productDetails.style}}"; "{${data[0].collection}}"; "${sizes}"${'\n'}`, (err) => {
+        if (err) console.error('FUCKED UP', err)
+  })
 }
 }
 writeCSV()
